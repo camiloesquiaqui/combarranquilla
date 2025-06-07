@@ -43,6 +43,9 @@ def init_db():
                     FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
                 );
             """)
+            cursor.execute("SELECT * FROM usuarios WHERE username = %s", ('camilo',))
+            if not cursor.fetchone():
+                cursor.execute("INSERT INTO usuarios (username, password) VALUES (%s, %s)", ('camilo', '12345'))
         conn.commit()
     finally:
         conn.close()
