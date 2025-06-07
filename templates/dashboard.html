@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mis Tareas</title>
+</head>
+<body>
+    <h2>Lista de Tareas</h2>
+    <form method="POST" action="/add">
+        <input name="titulo" placeholder="Título" required><br>
+        <textarea name="descripcion" placeholder="Descripción" required></textarea><br>
+        <input type="date" name="fecha_vencimiento" required><br>
+        <select name="estado">
+            <option value="pendiente">Pendiente</option>
+            <option value="completada">Completada</option>
+        </select><br>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <hr>
+    <ul>
+        {% for tarea in tareas %}
+            <li>
+                <strong>{{ tarea.titulo }}</strong> ({{ tarea.estado }}) - {{ tarea.fecha_vencimiento }}
+                <br>{{ tarea.descripcion }}
+                <br><a href="{{ url_for('delete', id=tarea.id) }}">Eliminar</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/logout">Cerrar sesión</a>
+</body>
+</html>

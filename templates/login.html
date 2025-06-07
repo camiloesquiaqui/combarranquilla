@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - ToDo App</title>
+</head>
+<body>
+    <h2>Iniciar Sesión</h2>
+    <form method="POST" action="/login">
+        <input name="username" placeholder="Usuario" required><br>
+        <input name="password" placeholder="Contraseña" type="password" required><br>
+        <button type="submit">Ingresar</button>
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <p style="color:red">{{ messages[0] }}</p>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
